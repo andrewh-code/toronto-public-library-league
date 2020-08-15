@@ -83,8 +83,8 @@ export default class CurrentSeasonLeadersComponent extends Component {
             case 'Salary':
                 return salaryLeaders.map((leader, index) => {
                     const name = leader.name;
-                    let salary = leader.stats.salary;
-                    // why is this not tranforming? It works in PlayerProfile.js
+                    // need to figure out why salary not converted to currency when it reaches front end
+                    let salary = parseInt(leader.stats.salary);
                     salary = "$" + salary.toLocaleString();
                     return (
                         <tr key = {index}>

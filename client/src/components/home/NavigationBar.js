@@ -9,7 +9,7 @@ export class NavigationBar extends Component {
                  <h1 id="navigationbar">
                     {/* font awesome icon */}
                      {/* <i className={this.props.icon} /> { this.props.title } */}
-                     Toronto Public Library League
+                     <Link to='/'>Toronto Public Library League</Link>
                  </h1>
                  <ul>
                     {/* want to use Link to instead of the anchor tag because by using the anchor tag, you refresh the page

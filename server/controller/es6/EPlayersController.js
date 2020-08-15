@@ -147,6 +147,11 @@ class EPlayersController extends BaseController {
     retrievePlayerProfileFromZuluruId(request, response) {   
         const pictureUrl = "http://localhost:1234/img/male_default_pic.jpg";
         // iterate over array
+        let players16Data = playerData.season16Data;
+        let players14Data = playerData.season14Data;
+        let players13Data = playerData.season13Data;
+        let players12Data = playerData.season12Data;
+        let players11Data = playerData.season11Data;
         let players10Data = playerData.season10Data;
         let players09Data = playerData.season09Data;
         let players08Data = playerData.season08Data;
@@ -159,6 +164,27 @@ class EPlayersController extends BaseController {
         }
 
         let seasonsPlayerInfoArray = [];
+
+        let season14playerInfo = players14Data.find((x) => x.zuluruId == id);
+        if (season14playerInfo) {
+            seasonsPlayerInfoArray.push(season14playerInfo);
+        }
+
+        let season13playerInfo = players13Data.find((x) => x.zuluruId == id);
+        if (season13playerInfo) {
+            seasonsPlayerInfoArray.push(season13playerInfo);
+        }
+
+        let season12playerInfo = players12Data.find((x) => x.zuluruId == id);
+        if (season12playerInfo) {
+            seasonsPlayerInfoArray.push(season12playerInfo);
+        }
+
+        let season11playerInfo = players11Data.find((x) => x.zuluruId == id);
+        if (season11playerInfo) {
+            seasonsPlayerInfoArray.push(season11playerInfo);
+        }
+
         let season10playerInfo = players10Data.find((x) => x.zuluruId == id);
         if (season10playerInfo) {
             seasonsPlayerInfoArray.push(season10playerInfo);
@@ -196,6 +222,7 @@ class EPlayersController extends BaseController {
         if (!playerInfoView.zuluruId || playerInfoView.zulurId === "null") {
             return this.return404(response, request.uuid, "could not find player with associated id: " + id);
         }
+
         return this.return200(response, request.uuid, playerInfoView);
     }
 
