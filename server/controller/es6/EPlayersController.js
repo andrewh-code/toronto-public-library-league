@@ -145,7 +145,9 @@ class EPlayersController extends BaseController {
 
     // this should return all of the player's information (including all stats);
     retrievePlayerProfileFromZuluruId(request, response) {   
-        const pictureUrl = "http://localhost:1234/img/male_default_pic.jpg";
+        // const pictureUrl = "http://localhost:1234/img/male_default_pic.jpg";
+        let id = request.params.zuluruId;
+        const pictureUrl = "http://localhost:1234/img/pokemon/" + id + ".png";
         // iterate over array
         let players16Data = playerData.season16Data;
         let players14Data = playerData.season14Data;
@@ -157,13 +159,18 @@ class EPlayersController extends BaseController {
         let players08Data = playerData.season08Data;
         let players07Data = playerData.season07Data;
 
-        let id = request.params.zuluruId;
+        
         // check if parseInt() not just number
         if (!id || isNaN(id)) {
             return this.return400(response, request.uuid, "please provide an integer value for the player id in endpoint")
         }
 
         let seasonsPlayerInfoArray = [];
+
+        let season16playerInfo = players16Data.find((x) => x.zuluruId == id);
+        if (season16playerInfo) {
+            seasonsPlayerInfoArray.push(season16playerInfo);
+        }
 
         let season14playerInfo = players14Data.find((x) => x.zuluruId == id);
         if (season14playerInfo) {

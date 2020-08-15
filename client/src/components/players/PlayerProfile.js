@@ -71,8 +71,6 @@ export default class PlayerProfile extends Component {
     renderTableHeader() {
         let individualPlayerTableHeader = [
             "Season",
-            "Name",
-            "Sex",
             "Salary",
             "Goals",
             "Assists",
@@ -116,8 +114,6 @@ export default class PlayerProfile extends Component {
         return (
             <tr>
                 <td>{seasonId} : {seasonName}</td>
-                <td>{name}</td>
-                <td>{sex}</td>
                 <td>{salary}</td>
                 <td>{goals}</td>
                 <td>{assists}</td>
@@ -157,8 +153,6 @@ export default class PlayerProfile extends Component {
             return (
                 <tr key={index}>
                     <td>{seasonId} : {seasonName}</td>
-                    <td>{name}</td>
-                    <td>{sex}</td>
                     <td>{salary}</td>
                     <td>{goals}</td>
                     <td>{assists}</td>
@@ -214,8 +208,6 @@ export default class PlayerProfile extends Component {
         return (
             <tr id="career_totals">
                 <td>Career Totals</td>
-                <td>{this.state.mockPlayer.name}</td>
-                <td>{this.state.mockPlayer.sex}</td>
                 <td>{sumSalary}</td>
                 <td>{sumGoals}</td>
                 <td>{sumAssists}</td>
