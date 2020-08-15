@@ -1,0 +1,8 @@
+/* for the player profile component */
+img#player_avatar {
+    max-width: 25%;
+    height: auto;
+    width: auto;
+    border-radius: 50%;
+    border: 3px solid #c9cfdd;
+}
