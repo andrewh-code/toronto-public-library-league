@@ -22,7 +22,7 @@ export class RecordsComponents extends Component {
 
     componentDidMount() {
         const seasonId = this.props.seasonId;
-        let endpoint = "http://localhost:1234/players/season/" + seasonId;
+        let endpoint = "/players/season/" + seasonId;
         axios.get(endpoint).then(result => {
             const serverResponseData = result.data;
             const status = result.data.status;
@@ -44,7 +44,7 @@ export class RecordsComponents extends Component {
         // this.props.retrievePlayers(this.props.match.params);
         if (this.props.match.params.seasonId !== this.state.seasonId) {
             const seasonId = this.props.seasonId;
-            let endpoint = "http://localhost:1234/players/season/" + seasonId;
+            let endpoint = "/players/season/" + seasonId;
             axios.get(endpoint).then(result => {
                 const serverResponseData = result.data;
                 const status = result.data.status;
