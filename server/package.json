@@ -1,0 +1,30 @@
+{
+  "name": "parityjs",
+  "version": "1.0.0",
+  "description": "parity project in JS",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server",
+    "dev6": "nodemon --exec babel-node server.js",
+    "client": "npm run start --prefix client",
+    "concurrent": "concurrently \"nodemon --exec babel-node server.js\" \"npm run client\""
+  },
+  "author": "andrewh-code",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "uuid": "^8.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "concurrently": "^5.3.0",
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
