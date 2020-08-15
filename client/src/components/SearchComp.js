@@ -5,6 +5,7 @@ import PlayerProfileCard from './players/PlayerProfileCard';
 //todo: move this to home directory
 export default class SearchComp extends Component {
     state = {
+        serverExecutionTime: null,
         serverResponseStatus: null,
         response: null,
         response: {},
@@ -23,6 +24,7 @@ export default class SearchComp extends Component {
             const serverResponseData = response.data;
             this.setState( {
                 // response: response
+                serverExecutionTime: serverResponseData.msExecutionTime,
                 serverResponseStatus: response.status,
                 foundPlayers: serverResponseData.result
             })
@@ -42,28 +44,38 @@ export default class SearchComp extends Component {
             // this.setAlert('Please enter something', 'light');
         } else {
             this.searchUsers(this.state.text);
-            this.setState({ text: ''});
+            this.setState({ 
+                text: '',
+                serverExecutionTime: null
+            });
+            
         }
     };
 
     render() {
-        let foundPlayers = this.state.foundPlayers;
-        let serverResponseStatus = this.state.serverResponseStatus;
 
+        // deconstruct state parameters
+        const { foundPlayers, serverResponseStatus, executionTime} = this.state;
+        let searchStatus;
+        let searchOutput;
+        
         const playerGridStyle = {
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
             gridGap: '1rem'
         }
-        
-        let searchOutput;
+
         if (serverResponseStatus != null && serverResponseStatus != 200) {
-            searchOutput = <h3>Player(s) not found...</h3>
+            searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
         } else {
+            
+            if (executionTime != null) {
+                searchStatus = <p id="search_execution_time">Players found: <b>{ foundPlayers ? foundPlayers.length : 0 }</b> execution time is: { executionTime } ms</p>;
+            }
+
             searchOutput = foundPlayers.map((player, index) =>(
-                // <p key = {index}>{ player.name }</p>
-                    <PlayerProfileCard key = { index } player = { player }/>
-                ));
+                                <PlayerProfileCard key = { index } player = { player }/>
+                            ));
         }
 
         return (
@@ -93,6 +105,9 @@ export default class SearchComp extends Component {
                     )} */}
                 </div>
                 <div className="container">
+                    <div style={{padding: "2px" }}>
+                        { searchStatus }
+                    </div>
                     <div style = { playerGridStyle }>
                         { searchOutput }
                     </div>

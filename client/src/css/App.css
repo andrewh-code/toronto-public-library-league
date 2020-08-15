@@ -136,9 +136,16 @@ table {
 .form {
   text-align: center;
 }
+
 .searchPlayers {
   width: 80%;
   height: 100%;
+}
+
+p#search_execution_time {
+  font-style: italic;
+  color: #8d8686ad;
+  text-align: center;
 }
 
 div#season_leaders {

@@ -6,8 +6,8 @@ import { request } from "express";
 
     return200(response, request, msg) {
         var id = request.uuid;
-        var msExecutionTime = process.hrtime(request.startExecutionTime)[1] / 1000000;
-
+        var msExecutionTime = (process.hrtime(request.startExecutionTime)[1] / 1000000).toFixed(3);
+        
         var out = {
             status: "success",
             code: 200,
@@ -21,7 +21,7 @@ import { request } from "express";
 
     return404(response, request, msg) {
         var id = request.uuid;
-        var msExecutionTime = process.hrtime(request.startExecutionTime)[1] / 1000000;
+        var msExecutionTime = (process.hrtime(request.startExecutionTime)[1] / 1000000).toFixed(3);
 
         var out = {
             status: "not found",
@@ -36,7 +36,7 @@ import { request } from "express";
 
     return400(response, request, msg) {
         var id = request.uuid;
-        var msExecutionTime = process.hrtime(request.startExecutionTime)[1] / 1000000;
+        var msExecutionTime = (process.hrtime(request.startExecutionTime)[1] / 1000000).toFixed(3);
 
         var out = {
             status: "error",
@@ -51,7 +51,7 @@ import { request } from "express";
 
     return500(response, request, msg) {
         var id = request.uuid;
-        var msExecutionTime = process.hrtime(request.startExecutionTime)[1] / 1000000;
+        var msExecutionTime = (process.hrtime(request.startExecutionTime)[1] / 1000000).toFixed(3);
 
         var out = {
             status: "server error",
