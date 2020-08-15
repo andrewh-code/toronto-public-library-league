@@ -55,7 +55,7 @@ export default class SearchComp extends Component {
     render() {
 
         // deconstruct state parameters
-        const { foundPlayers, serverResponseStatus, executionTime} = this.state;
+        const { foundPlayers, serverResponseStatus, serverExecutionTime} = this.state;
         let searchStatus;
         let searchOutput;
         
@@ -68,16 +68,14 @@ export default class SearchComp extends Component {
         if (serverResponseStatus != null && serverResponseStatus != 200) {
             searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
         } else {
-            
-            if (executionTime != null) {
-                searchStatus = <p id="search_execution_time">Players found: <b>{ foundPlayers ? foundPlayers.length : 0 }</b> execution time is: { executionTime } ms</p>;
+            if (serverExecutionTime != null) {
+                searchStatus = <p id="search_execution_time">Players found: <b>{ foundPlayers ? foundPlayers.length : 0 }</b> execution time is: { serverExecutionTime } ms</p>;
             }
-
             searchOutput = foundPlayers.map((player, index) =>(
                                 <PlayerProfileCard key = { index } player = { player }/>
                             ));
         }
-
+        
         return (
             <Fragment>
                 <div className="container">
