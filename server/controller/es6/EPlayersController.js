@@ -2,7 +2,7 @@ import playerData from '../../model/players';
 import BaseController from './BaseController';
 import PlayerInfoView from '../../view/playerprofile/PlayerInfoView';
 import SeasonDataInfo from '../../data/SeasonDataInfo';
-
+import fs from 'fs';
 class EPlayersController extends BaseController {
 
     constructor(){
@@ -121,10 +121,8 @@ class EPlayersController extends BaseController {
         
         for (i = 0; i < queryNameArr.length; i++){
             let qryStrToFind = queryNameArr[i].toLowerCase();
-            console.log(qryStrToFind);
             while (j < players.length) {
                 let name = players[j].name.toLowerCase();
-                console.log(name);
                 if (name.includes(qryStrToFind)) {
                     let keyNameFound = name.toLowerCase().replace(/ /g, '');
                     // check to see if it's in map
@@ -136,7 +134,6 @@ class EPlayersController extends BaseController {
                 j++;
             }
         }
-        console.log(nameFoundMap);
 
         if (foundPlayers.length < 1){
             return this.return404(response, request, "player not found");
@@ -147,9 +144,13 @@ class EPlayersController extends BaseController {
 
     // this should return all of the player's information (including all stats);
     retrievePlayerProfileFromZuluruId(request, response) {   
-        // const pictureUrl = "http://localhost:1234/img/male_default_pic.jpg";
+        const defaultProfilePicM = "http://localhost:1234/img/male_default_pic.jpg";
+        const defaultProfilePicF = "http://localhost:1234/img/female_default_pic.jpg";
         let id = request.params.zuluruId;
-        const pictureUrl = "http://localhost:1234/img/pokemon/" + id + ".png";
+        const pictureDir = "/img/pokemon/"
+        const picture = id + ".png";
+        const profilePic = "http://localhost:1234/img/pokemon/" + id + ".png";
+
         // iterate over array
         let players16Data = playerData.season16Data;
         let players14Data = playerData.season14Data;
@@ -226,11 +227,29 @@ class EPlayersController extends BaseController {
                 playerInfoView.pushStats(seasonsPlayerInfoArray[i].stats);
             }
         }
-        playerInfoView.setPicture = pictureUrl;
 
         if (!playerInfoView.zuluruId || playerInfoView.zulurId === "null") {
             return this.return404(response, request, "could not find player with associated id: " + id);
         }
+
+        // set the profile pic
+        let pictureUrl;
+        try {
+            if (fs.existsSync("../public/" + pictureDir + picture)) {
+                pictureUrl = profilePic;
+            } else {
+                if (playerInfoView.sex === "F") {
+                    pictureUrl = defaultProfilePicF;
+                } else {
+                    pictureUrl = defaultProfilePicM;
+                }
+            }
+        } catch(err) {
+            console.error(err)
+            pictureUrl = defaultProfilePic;
+        }
+        
+        playerInfoView.setPicture = pictureUrl;
         
         return this.return200(response, request, playerInfoView);
     }
