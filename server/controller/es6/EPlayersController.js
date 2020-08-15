@@ -18,13 +18,13 @@ class EPlayersController extends BaseController {
     };
 
     hiPlayers(request, response) {
-        return this.return200(response, request.uuid, "hi");
+        return this.return200(response, request, "hi");
     }
 
     retrieveAllPlayers(request, response) {
         let season10Players = playerData.season10Data;
         let season09Players = playerData.season09Data;
-        return this.return200(response, request.uuid, season09Players);
+        return this.return200(response, request, season09Players);
     }
 
     /**
@@ -76,9 +76,9 @@ class EPlayersController extends BaseController {
         }
         
         if (error){
-            return this.return404(response, request.uuid, players);
+            return this.return404(response, request, players);
         }
-        return this.return200(response, request.uuid, players);
+        return this.return200(response, request, players);
     }
 
     // this should just return the player bame, their zid, and most recent season's stats
@@ -137,10 +137,12 @@ class EPlayersController extends BaseController {
             }
         }
         console.log(nameFoundMap);
+
         if (foundPlayers.length < 1){
-            return this.return404(response, request.uuid, "player not found");
+            return this.return404(response, request, "player not found");
         }
-        return this.return200(response, request.uuid, foundPlayers);
+        
+        return this.return200(response, request, foundPlayers);
     }
 
     // this should return all of the player's information (including all stats);
@@ -162,7 +164,7 @@ class EPlayersController extends BaseController {
         
         // check if parseInt() not just number
         if (!id || isNaN(id)) {
-            return this.return400(response, request.uuid, "please provide an integer value for the player id in endpoint")
+            return this.return400(response, request, "please provide an integer value for the player id in endpoint")
         }
 
         let seasonsPlayerInfoArray = [];
@@ -227,10 +229,10 @@ class EPlayersController extends BaseController {
         playerInfoView.setPicture = pictureUrl;
 
         if (!playerInfoView.zuluruId || playerInfoView.zulurId === "null") {
-            return this.return404(response, request.uuid, "could not find player with associated id: " + id);
+            return this.return404(response, request, "could not find player with associated id: " + id);
         }
-
-        return this.return200(response, request.uuid, playerInfoView);
+        
+        return this.return200(response, request, playerInfoView);
     }
 
 

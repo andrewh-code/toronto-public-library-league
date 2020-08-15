@@ -24,7 +24,7 @@ class EStatsController extends BaseController {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
         
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -48,12 +48,12 @@ class EStatsController extends BaseController {
                 return Number(a.stats.salary) > Number(b.stats.salary) ? -1 : 1;
             })
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
         
         let result = sortedPlayers.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     // sort and limit qp
@@ -61,7 +61,7 @@ class EStatsController extends BaseController {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
         
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -72,7 +72,7 @@ class EStatsController extends BaseController {
         } else if (sort === "desc") {
             players.sort((a, b) => (parseInt(a.stats.goals, 10) > parseInt(b.stats.goals, 10)) ? -1 : 1);
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
         // let filteredAndSortedResult;
         // if (sort === "asc") {
@@ -88,12 +88,12 @@ class EStatsController extends BaseController {
         //     .sort((a, b) => (parseInt(a.stats.goals, 10) > parseInt(b.stats.goals, 10)) ? -1 : 1);
 
         // } else {
-        //     return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+        //     return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         // }
 
         let result = players.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     retrieveAssistLeaders(request, response) {
@@ -101,7 +101,7 @@ class EStatsController extends BaseController {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -111,19 +111,19 @@ class EStatsController extends BaseController {
         } else if (sort === "desc") {
             players.sort((a, b) => (parseInt(a.stats.assists, 10) > parseInt(b.stats.assists, 10)) ? -1 : 1);
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
 
         let result = players.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     retrieveSecondAssistLeaders(request, response) {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -133,19 +133,19 @@ class EStatsController extends BaseController {
         } else if (sort === "desc") {
             players.sort((a, b) => (parseInt(a.stats.secondAssists, 10) > parseInt(b.stats.secondAssists, 10)) ? -1 : 1);
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
 
         let result = players.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     retrieveDefensiveLeaders(request, response) {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -155,19 +155,19 @@ class EStatsController extends BaseController {
         } else if (sort === "desc") {
             players.sort((a, b) => (parseInt(a.stats.ds, 10) > parseInt(b.stats.ds, 10)) ? -1 : 1);
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
 
         let result = players.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     retrieveWinsLeaders(request, response) {
         let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request.uuid, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
         }
         let sort = request.query.sort;
         let limit = request.query.limit;
@@ -177,12 +177,12 @@ class EStatsController extends BaseController {
         } else if (sort === "desc") {
             players.sort((a, b) => (parseFloat(a.stats.wins, 10) > parseFloat(b.stats.wins, 10)) ? -1 : 1);
         } else {
-            return this.return400(response, request.uuid, "sort query parameter must be either 'asc' or 'desc'");
+            return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
 
         let result = players.slice(0, limit);
 
-        return this.return200(response, request.uuid, result);
+        return this.return200(response, request, result);
     }
 
     // check query parameters

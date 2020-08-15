@@ -20,7 +20,9 @@ const PORT = process.env.PORT || 1234;
 app.use((request, response, next) => {
     var id = uuidv4();
     request.uuid = id;
-
+    var startExecutionTime = process.hrtime();
+    request.startExecutionTime = startExecutionTime;
+    
     response.setHeader('Access-Cotntrol-Allow-Origin', 'http://localhost:3000');
     response.setHeader('Access-Control-All-Methods', 'GET');
     response.setHeader('Access-Control-Allow_headers', 'X-Requested-With,content-type');
