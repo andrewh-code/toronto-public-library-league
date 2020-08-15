@@ -7,11 +7,9 @@ export default class PlayerProfile extends Component {
     
     componentDidMount() {
         const seasonId = this.props.seasonId;
-        let host = "http://localhost:1234";
         let baseEndpoint = "/players/individual/id/";
         let playerId = this.props.match.params.zid;
-        let endpoint = host + baseEndpoint + playerId;
-
+        let endpoint = baseEndpoint + playerId;
         axios.get(endpoint).then(response => {
             const serverResponseData = response.data;
             const status = response.data.status;

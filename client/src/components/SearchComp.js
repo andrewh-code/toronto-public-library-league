@@ -18,7 +18,7 @@ export default class SearchComp extends Component {
 
     searchUsers(searchTerm) {
         let asciiSearchTerm = encodeURIComponent(searchTerm.trim());
-        let endpoint = `http://localhost:1234/players/individual/person?name=${asciiSearchTerm}`;
+        let endpoint = `/players/individual/person?name=${asciiSearchTerm}`;
         axios.get(endpoint).then(response => {
             const serverResponseData = response.data;
             this.setState( {

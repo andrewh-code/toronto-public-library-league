@@ -20,14 +20,6 @@ class App extends Component {
     searchPlayerResults: []
   };
 
-  // retrievePlayers = async player => {
-  //   let endpoint = "http://localhost:1234/players/all";
-  //   const result = await axios.get(endpoint);
-  //   this.setState({
-  //     players: result.data
-  //   });
-  // };
-
   render(){
     const {players, searchPlayerResults} = this.state;
     return (

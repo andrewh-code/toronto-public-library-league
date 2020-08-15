@@ -74,22 +74,6 @@ class EStatsController extends BaseController {
         } else {
             return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
         }
-        // let filteredAndSortedResult;
-        // if (sort === "asc") {
-        //     filteredAndSortedResult = players.filter((player, index) => {
-        //         return player.sex === sex.toUpperCase();
-        //     })
-        //     .sort((a, b) => (parseInt(a.stats.goals, 10) > parseInt(b.stats.goals, 10)) ? 1 : -1);
-
-        // } else if (sort === "desc") {
-        //     filteredAndSortedResult = result = players.filter((player, index) => {
-        //         return player.sex === sex.toUpperCase();
-        //     })
-        //     .sort((a, b) => (parseInt(a.stats.goals, 10) > parseInt(b.stats.goals, 10)) ? -1 : 1);
-
-        // } else {
-        //     return this.return400(response, request, "sort query parameter must be either 'asc' or 'desc'");
-        // }
 
         let result = players.slice(0, limit);
 
