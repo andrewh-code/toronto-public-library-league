@@ -7,13 +7,14 @@ export default class CurrentSeasonLeadersComponent extends Component {
         let sort = "desc";
         let limit = "5";
         let sex = "M";
+        let seasonId = 16;
         
-        let salaryLeadersEndpoint = `/stats/leaders/salary?sex=${sex}&sort=${sort}&limit=${limit}`;
-        let goalLeadersEndpoint = `/stats/leaders/goals?sex=${sex}&sort=${sort}&limit=${limit}`;
-        let assistLeadersEndpoint = `/stats/leaders/assists?sex=${sex}&sort=${sort}&limit=${limit}`;
-        let secondAssistLeadersEndpoint = `/stats/leaders/secondassists?sex=${sex}&sort=${sort}&limit=${limit}`;
-        let dLeadersEndpoint = `/stats/leaders/ds?sex=${sex}&sort=${sort}&limit=${limit}`;
-        let winLeadersEndpoint = `/stats/leaders/wins?sex=${sex}&sort=${sort}&limit=${limit}`;
+        let salaryLeadersEndpoint = `/stats/leaders/salary?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
+        let goalLeadersEndpoint = `/stats/leaders/goals?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
+        let assistLeadersEndpoint = `/stats/leaders/assists?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
+        let secondAssistLeadersEndpoint = `/stats/leaders/secondassists?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
+        let dLeadersEndpoint = `/stats/leaders/ds?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
+        let winLeadersEndpoint = `/stats/leaders/wins?seasonId=${seasonId}&sex=${sex}&sort=${sort}&limit=${limit}`;
 
         let reqSalaryLeaders = axios.get(salaryLeadersEndpoint);
         let reqGoalLeaders = axios.get(goalLeadersEndpoint);

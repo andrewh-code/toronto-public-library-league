@@ -202,7 +202,9 @@ class EPlayersController extends BaseController {
         // set the profile pic
         let pictureUrl;
         try {
-            if (fs.existsSync("../public/" + pictureDir + picture)) {
+            let temp = "../../public" + pictureDir + picture;
+            console.log(temp);
+            if (fs.existsSync(temp)) {
                 pictureUrl = profilePic;
             } else {
                 if (playerInfoView.sex === "F") {
@@ -213,9 +215,9 @@ class EPlayersController extends BaseController {
             }
         } catch(err) {
             console.error(err)
-            pictureUrl = defaultProfilePic;
+            pictureUrl = defaultProfilePicM;
         }
-        
+        console.log(pictureUrl);
         playerInfoView.setPicture = pictureUrl;
         
         return this.return200(response, request, playerInfoView);

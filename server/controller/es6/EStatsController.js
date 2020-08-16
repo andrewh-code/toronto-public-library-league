@@ -20,15 +20,19 @@ class EStatsController extends BaseController {
     }
 
     retrieveSalaryLeaders(request, response) {
-
         // spread operator used to clone object in ES6 but does not copy nested attributes
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
         
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
+        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
+
         let sortedPlayers = [];
         if (sort === "asc") {
             sortedPlayers = players.sort((a, b) => {
@@ -59,14 +63,15 @@ class EStatsController extends BaseController {
 
     // sort and limit qp
     retrieveGoalLeaders(request, response) {
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
-        
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+        
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
-        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
 
         if (sort === "asc") {
             players.sort((a, b) => (parseInt(a.stats.goals, 10) > parseInt(b.stats.goals, 10)) ? 1 : -1);
@@ -82,14 +87,17 @@ class EStatsController extends BaseController {
     }
 
     retrieveAssistLeaders(request, response) {
-        
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
+        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
 
         if (sort === "asc") {
             players.sort((a, b) => (parseInt(a.stats.assists, 10) > parseInt(b.stats.assists, 10)) ? 1 : -1);
@@ -105,13 +113,17 @@ class EStatsController extends BaseController {
     }
 
     retrieveSecondAssistLeaders(request, response) {
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
+        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
 
         if (sort === "asc") {
             players.sort((a, b) => (parseInt(a.stats.secondAssists, 10) > parseInt(b.stats.secondAssists, 10)) ? 1 : -1);
@@ -127,13 +139,17 @@ class EStatsController extends BaseController {
     }
 
     retrieveDefensiveLeaders(request, response) {
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
+        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
 
         if (sort === "asc") {
             players.sort((a, b) => (parseInt(a.stats.ds, 10) > parseInt(b.stats.ds, 10)) ? 1 : -1);
@@ -149,13 +165,17 @@ class EStatsController extends BaseController {
     }
 
     retrieveWinsLeaders(request, response) {
-        let players = JSON.parse(JSON.stringify(playerData.season10Data));
 
         if (!this._validateQueryParameters(request.query)) {
-            return this.return400(response, request, "please verify that the query parameters sex, sort, and limit are correct");
+            return this.return400(response, request, "please verify that the query parameters seasonId, sex, sort, and limit are correct");
         }
+
+        let seasonId = request.query.seasonId
         let sort = request.query.sort;
         let limit = request.query.limit;
+        let sex = request.query.sex;
+        let seasonData = this._retrievePlayersFromFile(seasonId, playerData)
+        let players = JSON.parse(JSON.stringify(seasonData));
 
         if (sort === "asc") {
             players.sort((a, b) => (parseFloat(a.stats.wins, 10) > parseFloat(b.stats.wins, 10)) ? 1 : -1);
@@ -172,7 +192,8 @@ class EStatsController extends BaseController {
 
     // check query parameters
     _validateQueryParameters(queryParameters) {
-         if (!queryParameters.sort || !queryParameters.limit || !queryParameters.sex) {
+
+         if (!queryParameters.sort || !queryParameters.limit || !queryParameters.sex || !queryParameters.seasonId) {
              return false;
          }
 
@@ -194,13 +215,11 @@ class EStatsController extends BaseController {
     _currencyToInt(currencyValue) {
         // just remove the dollar sign and commas
         let output = currencyValue.replace(/(,|\$)/g, "");
-        console.log(output);
         return output;
     }
 
     // if I use arrow function, won't have to bind?
     _retrievePlayersFromFile(seasonId, playerData) {
-
         let players = [];
         // let error = false;
         switch(parseInt(seasonId)) {

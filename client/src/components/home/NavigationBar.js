@@ -24,9 +24,6 @@ export class NavigationBar extends Component {
                     <li>
                         <Link to={'/search'}>Search</Link>
                     </li>
-                    <li>
-                        <Link to={'/player/123/'}>Player 123 Profile</Link>
-                    </li>
                     <div className="dropdown">
                         <button className="dropbtn">Previous Seasons
                             <i className="fa fa-caret-down"></i>
