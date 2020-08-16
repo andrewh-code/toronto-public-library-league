@@ -45,7 +45,8 @@ class App extends Component {
           <Route exact path = '/playercard' component = { PlayerProfileCard } />
           <Route exact path = '/about' component = {About} />
           <Route exact path = '/search' render = { props => (
-            <Search searchPlayerResults = {searchPlayerResults}/>
+            // <Search searchPlayerResults = {searchPlayerResults}/>
+            <SearchWrapper {...props} />
           )} />
           <Route exact path = '/player/:zid' render = { props => (
             <PlayerProfile {...props} />

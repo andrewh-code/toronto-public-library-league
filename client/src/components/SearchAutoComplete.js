@@ -1,5 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import PropTypes from 'prop-types';
+import axios from 'axios'
+import PlayerProfileCard from './players/PlayerProfileCard';
 
 export default class SearchAutoComplete extends Component {
     // makes it mandatory, don't need
@@ -11,20 +13,21 @@ export default class SearchAutoComplete extends Component {
         suggestions: []
       };
     
-      constructor(props) {
-        super(props); 
+        constructor(props) {
+            super(props);
 
-        this.state = {
-          // The active selection's index
-          activeSuggestion: 0,
-          // The suggestions that match the user's input
-          filteredSuggestions: [],
-          // Whether or not the suggestion list is shown
-          showSuggestions: false,
-          // What the user has entered
-          userInput: "",
-        //   suggestions: ['hello', 'world']
-        };
+            this.state = {
+                
+                serverExecutionTime: null,  
+                serverResponseStatus: null,
+                response: {},
+                foundPlayers: [],
+
+                activeSuggestion: 0,
+                filteredSuggestions: [],
+                showSuggestions: false,
+                userInput: "",
+            };
       }
     
       // Event fired when the input value is changed
@@ -90,6 +93,42 @@ export default class SearchAutoComplete extends Component {
           this.setState({ activeSuggestion: activeSuggestion + 1 });
         }
       };
+
+        // can set it up like a regular function, 
+        // but you would always have to set .bind(this) at the end of each methdo call
+        onSubmit = (e) => {
+            e.preventDefault();
+            if (this.state.userInput === '') {
+                // this.setAlert('Please enter something', 'light');
+            } else {
+                this.searchUsers(this.state.userInput);
+                this.setState({ 
+                    userInput: '',
+                    serverExecutionTime: null
+                });
+                
+            }
+        };
+
+      searchUsers(searchTerm) {
+        let asciiSearchTerm = encodeURIComponent(searchTerm.trim());
+        let endpoint = `/players/individual/person?name=${asciiSearchTerm}`;
+        axios.get(endpoint).then(response => {
+            const serverResponseData = response.data;
+            console.log(response.data);
+            this.setState( {
+                // response: response
+                serverExecutionTime: serverResponseData.msExecutionTime,
+                serverResponseStatus: response.status,
+                foundPlayers: serverResponseData.result
+            })
+        })
+        .catch(err => {
+            this.setState({
+                serverResponseStatus: err.response.status
+            })
+        });
+    }
     
       render() {
         const {
@@ -133,21 +172,67 @@ export default class SearchAutoComplete extends Component {
           } else {
             suggestionsListComponent = (
               <div className="no-suggestions">
-                <em>No suggestions, you're on your own!</em>
+                <em>No suggested players</em>
               </div>
             );
           }
         }
+
+        // deconstruct state parameters
+        const { foundPlayers, serverResponseStatus, serverExecutionTime} = this.state;
+        let searchStatus;
+        let searchOutput;
+        
+        const playerGridStyle = {
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridGap: '1rem'
+        }
+
+        if (serverResponseStatus != null && serverResponseStatus != 200) {
+            searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
+        } else {
+            if (serverExecutionTime != null) {
+                searchStatus = <p id="search_execution_time">Players found: <b>{ foundPlayers ? foundPlayers.length : 0 }</b> execution time is: { serverExecutionTime } ms</p>;
+            }
+            searchOutput = foundPlayers.map((player, index) =>(
+                                <PlayerProfileCard key = { index } player = { player }/>
+                            ));
+        }
     
         return (
           <Fragment>
-            <input
-              type="text"
-              onChange={onChange}
-              onKeyDown={onKeyDown}
-              value={userInput}
-            />
-            {suggestionsListComponent}
+            <div class="container">
+
+                <form onSubmit= { this.onSubmit } className = "form">
+                    <div className="row">
+                        <div className="col-6">
+                            <input
+                                type="text"
+                                onChange={onChange}
+                                onKeyDown={onKeyDown}
+                                value={userInput}
+                            />
+                            {suggestionsListComponent}
+                        </div>
+                        <div className="col-6">
+                            <input type="submit"
+                                value="search"
+                                disabled= { !this.state.userInput }
+                                className = "btn btn-secondary btn-block"
+                            />  
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div className="container">
+                <div style={{padding: "2px" }}>
+                    { searchStatus }
+                </div>
+                <div style = { playerGridStyle }>
+                    { searchOutput }
+                </div>
+            </div>
           </Fragment>
         );
       }

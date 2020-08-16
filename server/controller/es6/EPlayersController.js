@@ -89,6 +89,7 @@ class EPlayersController extends BaseController {
         for (i = 0; i < queryNameArr.length; i++){
             let qryStrToFind = queryNameArr[i].toLowerCase();
             while (j < players.length) {
+                console.log(players[j].name);
                 let name = players[j].name.toLowerCase();
                 if (name.includes(qryStrToFind)) {
                     let keyNameFound = name.toLowerCase().replace(/ /g, '');

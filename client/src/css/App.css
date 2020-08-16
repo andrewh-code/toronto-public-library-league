@@ -255,6 +255,12 @@ h5#season_leaders {
   border: 2px solid #c9cfdd;
 }
 
-.player_profile_card li {
+.player_profile_card li, .suggestions li {
   list-style-type: none;
+}
+
+.suggestions ul, .suggestions li, em{
+  color: #8d8686ad;
+  margin: 0;
+  padding: 0;
 }
