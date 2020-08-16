@@ -5,12 +5,14 @@ import './css/App.css';
 import NavigationBar from './components/home/NavigationBar';
 import SeasonsComponent from './components/seasons/SeasonsComponent';
 import TestTableComponent from './components/TestTableComponent';
-import SearchComp from './components/SearchComp';
+import Search from './components/Search';
 import PlayerResults from './components/players/PlayerResults';
 import PlayerProfile from './components/players/PlayerProfile';
 import CurrentSeasonLeadersComponent from './components/leaders/SeasonLeadersComponent';
 import About from './components/home/About';
 import PlayerProfileCard from './components/players/PlayerProfileCard';
+import SearchAutoComplete from './components/SearchAutoComplete';
+import SearchWrapper from './components/SearchWrapper';
 
 
 class App extends Component {
@@ -35,12 +37,15 @@ class App extends Component {
           <CurrentSeasonLeadersComponent {...props} seasonId = {10}/>
         }}/> */}
         <Route exact path = "/" component = {CurrentSeasonLeadersComponent}/>
-        
+        <Route exact path = '/auto' render = { props => (
+            <SearchWrapper {...props} />
+          )} />
+
         <Switch>
           <Route exact path = '/playercard' component = { PlayerProfileCard } />
           <Route exact path = '/about' component = {About} />
           <Route exact path = '/search' render = { props => (
-            <SearchComp searchPlayerResults = {searchPlayerResults}/>
+            <Search searchPlayerResults = {searchPlayerResults}/>
           )} />
           <Route exact path = '/player/:zid' render = { props => (
             <PlayerProfile {...props} />

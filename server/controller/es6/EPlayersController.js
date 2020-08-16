@@ -75,6 +75,10 @@ class EPlayersController extends BaseController {
                 break;
         }
         
+        players.map(player => {
+            console.log(player.name);
+        });
+        
         if (error){
             return this.return404(response, request, players);
         }

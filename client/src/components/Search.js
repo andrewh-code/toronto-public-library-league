@@ -3,14 +3,19 @@ import axios from 'axios'
 import PlayerProfileCard from './players/PlayerProfileCard';
 
 //todo: move this to home directory
-export default class SearchComp extends Component {
+export default class Search extends Component {
+    
+    // static PropTypes = {
+    //     suggestions: this.PropTypes.instanceOf(Array)
+    // }
+
     state = {
         serverExecutionTime: null,
         serverResponseStatus: null,
         response: null,
         response: {},
         text: '',
-        foundPlayers: []
+        foundPlayers: [],
     }
 
     onChange = (e) => {
@@ -51,6 +56,8 @@ export default class SearchComp extends Component {
             
         }
     };
+
+    
 
     render() {
 
