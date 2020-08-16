@@ -212,6 +212,7 @@ export default class SearchAutoComplete extends Component {
                                 onChange={onChange}
                                 onKeyDown={onKeyDown}
                                 value={userInput}
+                                placeholder="search for players..." 
                             />
                             {suggestionsListComponent}
                         </div>
