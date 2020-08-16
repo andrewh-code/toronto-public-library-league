@@ -16,12 +16,12 @@
 // export default router;
 import helloroutes from './helloroutes';
 import byeroutes from './byeroutes';
-import playerroutes from './playerroutes';
+import playersroutes from './playersroutes';
 import statsroutes from './statsroutes';
 
 export default {
     helloroutes,
     byeroutes,
-    playerroutes,
+    playersroutes,
     statsroutes
 }

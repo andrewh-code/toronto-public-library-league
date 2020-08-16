@@ -35,7 +35,7 @@ var dir = path.join(__dirname, '/public');
 app.use(express.static(dir));
 app.use('/hello', router.helloroutes);
 app.use('/bye', router.byeroutes);
-app.use('/players', router.playerroutes);
+app.use('/players', router.playersroutes);
 app.use('/stats', router.statsroutes);
 
 

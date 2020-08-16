@@ -15,6 +15,9 @@ class EPlayersController extends BaseController {
         this.searchRetrievePlayers = this.searchRetrievePlayers.bind(this);
         this.retrievePlayerProfileFromZuluruId = this.retrievePlayerProfileFromZuluruId.bind(this);
         this.retrieveAllPlayersBySeason = this.retrieveAllPlayersBySeason.bind(this);
+
+        // private 
+        this._retrievePlayersFromFile = this._retrievePlayersFromFile.bind(this);
     };
 
     hiPlayers(request, response) {
@@ -36,50 +39,10 @@ class EPlayersController extends BaseController {
 
         // check if season id is null/blank
         let seasonId = request.params.seasonId;
-        let players = null;
-        let error = false;
-        switch(parseInt(seasonId)) {
-            case 16:
-                players = playerData.season16Data;
-                break;
-            case 14:
-                players = playerData.season14Data;
-                break;
-            case 13:
-                players = playerData.season13Data;
-                break;
-            case 12:
-                players = playerData.season12Data;
-                break;
-            case 11:
-                players = playerData.season11Data;
-                break;
-            case 10:
-                players = playerData.season10Data;
-                break;
-            case 9:
-                players = playerData.season09Data;
-                break;
-            case 8:
-                players = playerData.season08Data;
-                break;
-            case 7:
-                players = playerData.season07Data;
-                break;
-            case 5:
-                players = playerData.season05Data;
-                break;
-            default:
-                players = "unable to find players for current season: " + seasonId;
-                error = true;
-                break;
-        }
-        
-        players.map(player => {
-            console.log(player.name);
-        });
-        
-        if (error){
+        let players = []
+        players = this._retrievePlayersFromFile(seasonId, playerData);
+
+        if (!Array.isArray(players) || players.length < 1){
             return this.return404(response, request, players);
         }
         return this.return200(response, request, players);
@@ -260,13 +223,47 @@ class EPlayersController extends BaseController {
 
 
     // if I use arrow function, won't have to bind?
-    _retrievePlayersFromFiles() {
+    _retrievePlayersFromFile(seasonId, playerData) {
 
-        let players10Data = playerData.season10Data;
-        let players09Data = playerData.season09Data;
-        let players08Data = playerData.season08Data;
-        let players07Data = playerData.season07Data;
+        let players = [];
+        // let error = false;
+        switch(parseInt(seasonId)) {
+            case 16:
+                players = playerData.season16Data;
+                break;
+            case 14:
+                players = playerData.season14Data;
+                break;
+            case 13:
+                players = playerData.season13Data;
+                break;
+            case 12:
+                players = playerData.season12Data;
+                break;
+            case 11:
+                players = playerData.season11Data;
+                break;
+            case 10:
+                players = playerData.season10Data;
+                break;
+            case 9:
+                players = playerData.season09Data;
+                break;
+            case 8:
+                players = playerData.season08Data;
+                break;
+            case 7:
+                players = playerData.season07Data;
+                break;
+            case 5:
+                players = playerData.season05Data;
+                break;
+            default:
+                players = "unable to find players for current season: " + seasonId;
+                break;
+        }
 
+        return players;
     }
 }
 

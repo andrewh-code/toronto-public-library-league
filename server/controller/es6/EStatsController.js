@@ -16,6 +16,7 @@ class EStatsController extends BaseController {
 
         this._validateQueryParameters = this._validateQueryParameters.bind(this);
         this._currencyToInt = this._currencyToInt.bind(this);
+        this._retrievePlayersFromFile = this._retrievePlayersFromFile.bind(this);
     }
 
     retrieveSalaryLeaders(request, response) {
@@ -196,9 +197,53 @@ class EStatsController extends BaseController {
         console.log(output);
         return output;
     }
+
+    // if I use arrow function, won't have to bind?
+    _retrievePlayersFromFile(seasonId, playerData) {
+
+        let players = [];
+        // let error = false;
+        switch(parseInt(seasonId)) {
+            case 16:
+                players = playerData.season16Data;
+                break;
+            case 14:
+                players = playerData.season14Data;
+                break;
+            case 13:
+                players = playerData.season13Data;
+                break;
+            case 12:
+                players = playerData.season12Data;
+                break;
+            case 11:
+                players = playerData.season11Data;
+                break;
+            case 10:
+                players = playerData.season10Data;
+                break;
+            case 9:
+                players = playerData.season09Data;
+                break;
+            case 8:
+                players = playerData.season08Data;
+                break;
+            case 7:
+                players = playerData.season07Data;
+                break;
+            case 5:
+                players = playerData.season05Data;
+                break;
+            default:
+                players = "unable to find players for current season: " + seasonId;
+                break;
+        }
+
+        return players;
+    }
     
-    // data needs to be array
-    sortAndGetPlayers(sortWay, keyTerm, data) {}
+    
+
 }
 
 export default EStatsController;

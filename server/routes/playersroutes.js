@@ -8,6 +8,7 @@ const router = Router();
 const ePlayersController = new EPlayersController();
 
 // hello world
+
 router.get('/', ePlayersController.hiPlayers);
 router.get('/all', ePlayersController.retrieveAllPlayers);
 router.get('/season/:seasonId', ePlayersController.retrieveAllPlayersBySeason);
