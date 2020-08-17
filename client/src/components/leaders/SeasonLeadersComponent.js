@@ -89,9 +89,9 @@ export default class CurrentSeasonLeadersComponent extends Component {
                     salary = "$" + salary.toLocaleString();
                     return (
                         <tr key = {index}>
-                            <td>{index+1}</td>
-                            <td>{name}</td>
-                            <td>{salary}</td>
+                            <td id="sl_rank">{index+1}</td>
+                            <td id="sl_name">{name}</td>
+                            <td id="sl_metric">{salary}</td>
                         </tr>
                     )
                 });

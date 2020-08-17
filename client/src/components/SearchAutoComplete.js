@@ -202,8 +202,7 @@ export default class SearchAutoComplete extends Component {
     
         return (
           <Fragment>
-            <div class="container">
-
+            <div className="container">
                 <form onSubmit= { this.onSubmit } className = "form">
                     <div className="row">
                         <div className="col-6">

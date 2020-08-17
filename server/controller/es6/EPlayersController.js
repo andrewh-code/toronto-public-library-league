@@ -86,20 +86,38 @@ class EPlayersController extends BaseController {
         let j = 0;
         let nameFoundMap = new Map();
         
-        for (i = 0; i < queryNameArr.length; i++){
-            let qryStrToFind = queryNameArr[i].toLowerCase();
-            while (j < players.length) {
-                console.log(players[j].name);
-                let name = players[j].name.toLowerCase();
-                if (name.includes(qryStrToFind)) {
-                    let keyNameFound = name.toLowerCase().replace(/ /g, '');
-                    // check to see if it's in map
-                    if (!nameFoundMap.has(keyNameFound)){
-                        nameFoundMap.set(keyNameFound, 1);
-                        foundPlayers.push(players[j]);
-                    }
+
+        /**
+         * add a limit of like 20 to prevent searching letters and what not
+         */
+        // search for entire name
+        for (i = 0; i < players.length && foundPlayers.length < 15; i++) {
+            console.log(queryParamName.toLowerCase());
+            let name = players[i].name.toLowerCase();
+            if (queryParamName.toLowerCase() == name) {
+                let keyNameFound = name.toLowerCase().replace(/ /g, '');
+                if (!nameFoundMap.has(keyNameFound)){
+                    nameFoundMap.set(keyNameFound, 1);
+                    foundPlayers.push(players[i]);
                 }
-                j++;
+            }
+        }
+
+        if (foundPlayers.length < 1) {
+            for (i = 0; i < queryNameArr.length; i++){
+                let qryStrToFind = queryNameArr[i].toLowerCase();
+                while (j < players.length && foundPlayers.length < 15) {
+                    let name = players[j].name.toLowerCase();
+                    if (name.includes(qryStrToFind)) {
+                        let keyNameFound = name.toLowerCase().replace(/ /g, '');
+                        // check to see if it's in map
+                        if (!nameFoundMap.has(keyNameFound)){
+                            nameFoundMap.set(keyNameFound, 1);
+                            foundPlayers.push(players[j]);
+                        }
+                    }
+                    j++;
+                }
             }
         }
 
