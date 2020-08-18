@@ -219,15 +219,15 @@ export default class PlayerComparison extends Component {
                             <input type="text" value = { this.state.player2Input } onChange = { this.onChangePlayer2 } placeholder="player 2 ID..."></input>
                         </form>
                     </div>
-                    <div className="row">
-                        <div className="col">
-                            <form onSubmit = { this.onSubmit }>
+                </div>
+                <div className="row">
+                    <div className="col">
+                        <form onSubmit = { this.onSubmit }>
                                 <input type="submit"
                                     value="Get Players"
                                     disabled = { !this.state.player1Input || !this.state.player2Input }
                                     className = "btn btn-secondary btn-block"/>
                             </form>
-                        </div>
                     </div>
                 </div>
 
