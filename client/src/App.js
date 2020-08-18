@@ -13,7 +13,7 @@ import About from './components/home/About';
 import PlayerProfileCard from './components/players/PlayerProfileCard';
 import SearchAutoComplete from './components/SearchAutoComplete';
 import SearchWrapper from './components/SearchWrapper';
-
+import PlayerComparison from './components/players/compare/PlayerComparison';
 
 class App extends Component {
 
@@ -37,13 +37,10 @@ class App extends Component {
           <CurrentSeasonLeadersComponent {...props} seasonId = {10}/>
         }}/> */}
         <Route exact path = "/" component = {CurrentSeasonLeadersComponent}/>
-        <Route exact path = '/auto' render = { props => (
-            <SearchWrapper {...props} />
-          )} />
-
         <Switch>
           <Route exact path = '/playercard' component = { PlayerProfileCard } />
-          <Route exact path = '/about' component = {About} />
+          <Route exact path = '/about' component = { About } />
+          <Route exact path = '/compare' component = { PlayerComparison } />
           <Route exact path = '/search' render = { props => (
             // <Search searchPlayerResults = {searchPlayerResults}/>
             <SearchWrapper {...props} />

@@ -18,8 +18,8 @@ export default class PlayerProfile extends Component {
             const playerInfo = response.data.result;
             this.setState({
                 mockPlayer: playerInfo
-            })
-        })
+            });
+        });
     }
 
     state = {

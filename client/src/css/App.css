@@ -229,3 +229,8 @@ h5#season_leaders {
 td, tr {
   font-size: small;
 }
+
+.show>.dropdown-menu {
+  display: block;
+  position: absolute;
+}
