@@ -233,7 +233,7 @@ export default class PlayerComparison extends Component {
 
                 {/* display player profile */}
                 <div className="row">
-                    <div className="col border">
+                    <div className="col">
                     <center>
                         <img src = { player1.picture } id="player_avatar"></img>
                         <p>{ player1.name }</p>
@@ -243,7 +243,7 @@ export default class PlayerComparison extends Component {
                         </select>
                     </center>
                     </div>
-                    <div className="col border">
+                    <div className="col">
                     <center>
                         <img src = { player2.picture } id="player_avatar"></img>
                         <p>{ player2.name }</p>
@@ -256,8 +256,8 @@ export default class PlayerComparison extends Component {
                 </div>
                 {/* combine stats button */}
                 <div className="row">
-                    <div className="col border">
-                    <form onSubmit = { this.onSubmit }>
+                    <div className="col">
+                        <form onSubmit = { this.onSubmit }>
                                 <input type="submit"
                                     value="Compare Player Stats"
                                     disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
