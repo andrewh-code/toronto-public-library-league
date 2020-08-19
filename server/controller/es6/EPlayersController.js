@@ -92,7 +92,6 @@ class EPlayersController extends BaseController {
          */
         // search for entire name
         for (i = 0; i < players.length && foundPlayers.length < 15; i++) {
-            console.log(queryParamName.toLowerCase());
             let name = players[i].name.toLowerCase();
             if (queryParamName.toLowerCase() == name) {
                 let keyNameFound = name.toLowerCase().replace(/ /g, '');
@@ -102,11 +101,12 @@ class EPlayersController extends BaseController {
                 }
             }
         }
+        console.log(nameFoundMap);
 
         if (foundPlayers.length < 1) {
             for (i = 0; i < queryNameArr.length; i++){
                 let qryStrToFind = queryNameArr[i].toLowerCase();
-                while (j < players.length && foundPlayers.length < 15) {
+                for (j = 0; j < players.length && foundPlayers.length < 15; j++) {
                     let name = players[j].name.toLowerCase();
                     if (name.includes(qryStrToFind)) {
                         let keyNameFound = name.toLowerCase().replace(/ /g, '');
@@ -114,9 +114,9 @@ class EPlayersController extends BaseController {
                         if (!nameFoundMap.has(keyNameFound)){
                             nameFoundMap.set(keyNameFound, 1);
                             foundPlayers.push(players[j]);
+                            console.log(players[j]);
                         }
                     }
-                    j++;
                 }
             }
         }
