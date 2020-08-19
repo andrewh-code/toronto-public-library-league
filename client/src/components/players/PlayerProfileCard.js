@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
-import PlayerProfile from './PlayerProfile';
 
 export default class PlayerProfileCard extends Component {
     
@@ -32,17 +30,14 @@ export default class PlayerProfileCard extends Component {
         }
         
         // for now send to player 12345
-        let zid = (!player.zuluruId ||  player.zuluruId == 0) ? 12345 : player.zuluruId
-        let playerUrl = '/player/' + zid;
+        let zid = (!player.zuluruId ||  player.zuluruId === 0) ? 12345 : player.zuluruId
 
         return (
 
             <div className="player_profile_card">
-                {/* image */}
-                {/* name */}
                 <div align="center">
                     <div>
-                        <img src={ imgUrl } id="player_avatar"/>    
+                        <img src={ imgUrl } id="player_avatar" alt="player profile pic"/>    
                     </div>
                     <div>
                         <p><b>{ name }</b></p>

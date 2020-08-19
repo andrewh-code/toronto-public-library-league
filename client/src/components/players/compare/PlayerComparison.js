@@ -15,8 +15,12 @@ export default class PlayerComparison extends Component {
             player1Input: '',
             player2Input: '',
 
+            showPlayerComparison: false,
+            player1SelectedSeasonStats: {},
+            player2SelectedSeasonStats: {},
             player1SelectedSeason: null,
             player2SelectedSeason: null,
+
             player1: {
                 name: "Test Player 2",
                 zuluruId: 12345,
@@ -193,10 +197,65 @@ export default class PlayerComparison extends Component {
         return seasons.map((season, index) => {
             const seasonId = season.seasonId;
             return (
-                <option value = { seasonId }>Season: { seasonId }</option>
+                <option key = { index } value = { seasonId }>Season: { seasonId }</option>
             )
         });
     }
+
+    onSubmitComparePlayers = (e) => {
+        console.log(this.state.player1SelectedSeason);
+        this.setState({
+            showPlayerComparison: true
+        });
+    }
+
+    showData() {
+        const {
+            player1,
+            player2,
+            player1SelectedSeason,
+            player2SelectedSeason,
+            player1SelectedSeasonStats,
+            player2SelectedSeasonStats
+        } = this.state;
+        
+        let p1Stats = {
+            salary: 0,
+            goals: 0,
+            assists: 0,
+            secondAssists: 0,
+            ds: 0
+        }
+
+        let p2Stats = {
+            salary: 0,
+            goals: 0,
+            assists: 0,
+            secondAssists: 0,
+            ds: 0
+        }
+
+        player1.stats.map((stat, index) => {
+            if (stat.seasonId == player1SelectedSeason) {
+                p1Stats.salary = stat.salary;                
+                p1Stats.goals = stat.goals;
+            }
+        });
+        
+        player2.stats.map((stat, index) => {
+            if (stat.seasonId == player2SelectedSeason) {
+                p2Stats.salary = stat.salary;                
+                p2Stats.goals = stat.goals;
+            }
+        });
+
+        return (
+            <Fragment>
+                <p>{ p2Stats.salary }</p>
+                <p>{ p1Stats.salary }</p>
+            </Fragment>
+        );
+    };
 
     render() {
         
@@ -208,7 +267,7 @@ export default class PlayerComparison extends Component {
             <div className="container">
                 
                 {/* Player search part  */}
-                <div className="row">
+                <div className="row mb-3">
                     <div className="col-6">
                         <form onSubmit = { this.onSubmit }>
                             <input type="text" value = { this.state.player1Input } onChange = { this.onChangePlayer1 } placeholder="player 1 ID..."></input>
@@ -220,8 +279,11 @@ export default class PlayerComparison extends Component {
                         </form>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mb-3">
                     <div className="col">
+                        
+                    </div>
+                    <div className="col-6">
                         <form onSubmit = { this.onSubmit }>
                                 <input type="submit"
                                     value="Get Players"
@@ -229,10 +291,13 @@ export default class PlayerComparison extends Component {
                                     className = "btn btn-secondary btn-block"/>
                             </form>
                     </div>
+                    <div className="col">
+                        
+                    </div>
                 </div>
 
                 {/* display player profile */}
-                <div className="row">
+                <div className="row mb-3">
                     <div className="col">
                     <center>
                         <img src = { player1.picture } id="player_avatar"></img>
@@ -255,20 +320,26 @@ export default class PlayerComparison extends Component {
                     </div>
                 </div>
                 {/* combine stats button */}
-                <div className="row">
-                    <div className="col">
-                        <form onSubmit = { this.onSubmit }>
+                <div className="row mb-3">
+                    <div className="col"></div>
+                    <div className="col-6">
+                        {/* <form id="comparePlayers" onSubmit = { this.onSubmitComparePlayers }>
                                 <input type="submit"
                                     value="Compare Player Stats"
                                     disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
                                     className = "btn btn-secondary btn-block"/>
-                            </form>
+                            </form> */}
+                            <button 
+                                disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
+                                className="btn btn-secondary btn-block" 
+                                onClick={this.onSubmitComparePlayers}>Compare Players</button>                            
                     </div>
+                    <div className="col"></div>
                 </div>
                 {/* start displaying stats here */}
-                <div className="row">
+                <div className="row mb-3">
                     <div className="col border">
-                        
+                        { this.showData() }
                     </div>
                     <div className="col border">
                         

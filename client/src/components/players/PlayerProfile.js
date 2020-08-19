@@ -6,15 +6,14 @@ import axios from 'axios';
 export default class PlayerProfile extends Component {
     
     componentDidMount() {
-        const seasonId = this.props.seasonId;
         let baseEndpoint = "/players/individual/id/";
         let playerId = this.props.match.params.zid;
         let endpoint = baseEndpoint + playerId;
         axios.get(endpoint).then(response => {
-            const serverResponseData = response.data;
-            const status = response.data.status;
-            const code = response.data.code;
-            const id = response.data.id;
+            // const serverResponseData = response.data;
+            // const status = response.data.status;
+            // const code = response.data.code;
+            // const id = response.data.id;
             const playerInfo = response.data.result;
             this.setState({
                 mockPlayer: playerInfo
@@ -88,7 +87,7 @@ export default class PlayerProfile extends Component {
     };
 
     renderMostRecentSeasonTableData() {
-        const { name, sex } = this.state.mockPlayer;
+        // const { name, sex } = this.state.mockPlayer;
 
         let mostRecentSeason = this.state.mockPlayer.stats.reduce((prevElement, currentElement) => {
             return (prevElement.seasonId > currentElement.seasonId) ? prevElement : currentElement
@@ -128,7 +127,7 @@ export default class PlayerProfile extends Component {
     }
 
     renderHistoricalSeasonData() {
-        const { name, sex } = this.state.mockPlayer;
+        // const { name, sex } = this.state.mockPlayer;
         let mockPlayerStats = this.state.mockPlayer.stats;
         
         return mockPlayerStats.map((stat, index) => {

@@ -14,6 +14,7 @@ import PlayerProfileCard from './components/players/PlayerProfileCard';
 import SearchAutoComplete from './components/SearchAutoComplete';
 import SearchWrapper from './components/SearchWrapper';
 import PlayerComparison from './components/players/compare/PlayerComparison';
+import Charting from './components/alpha/Charting';
 
 class App extends Component {
 
@@ -37,6 +38,7 @@ class App extends Component {
           <CurrentSeasonLeadersComponent {...props} seasonId = {10}/>
         }}/> */}
         <Route exact path = "/" component = {CurrentSeasonLeadersComponent}/>
+        <Route exact path = "/charts" component = {Charting}/>        
         <Switch>
           <Route exact path = '/playercard' component = { PlayerProfileCard } />
           <Route exact path = '/about' component = { About } />
