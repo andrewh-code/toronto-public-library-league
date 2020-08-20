@@ -24,6 +24,8 @@ const data = [
     },
   ];
 
+  
+
 export default class Charting extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';
 
