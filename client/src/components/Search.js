@@ -12,7 +12,6 @@ export default class Search extends Component {
     state = {
         serverExecutionTime: null,
         serverResponseStatus: null,
-        response: null,
         response: {},
         text: '',
         foundPlayers: [],
@@ -72,7 +71,7 @@ export default class Search extends Component {
             gridGap: '1rem'
         }
 
-        if (serverResponseStatus != null && serverResponseStatus != 200) {
+        if (serverResponseStatus != null && serverResponseStatus !== 200) {
             searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
         } else {
             if (serverExecutionTime != null) {

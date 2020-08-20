@@ -189,7 +189,7 @@ export default class SearchAutoComplete extends Component {
             gridGap: '1rem'
         }
 
-        if (serverResponseStatus != null && serverResponseStatus != 200) {
+        if (serverResponseStatus && serverResponseStatus !== 200) {
             searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
         } else {
             if (serverExecutionTime != null) {

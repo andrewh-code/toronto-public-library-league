@@ -95,7 +95,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             case "Goals":
                 return goalLeaders.map((leader, index) => {
                     const name = leader.name;
@@ -109,7 +108,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             case "Assists":
                 return assistLeaders.map((leader, index) => {
                     const name = leader.name;
@@ -123,7 +121,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             case "Second Assists":
                 return secondAssistLeaders.map((leader, index) => {
                     const name = leader.name;
@@ -137,7 +134,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             case "Ds":
                 return dLeaders.map((leader, index) => {
                     const name = leader.name;
@@ -151,7 +147,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             case "Wins":
                 return winLeaders.map((leader, index) => {
                     const name = leader.name;
@@ -165,7 +160,6 @@ export default class CurrentSeasonLeadersComponent extends Component {
                         </tr>
                     )
                 });
-                break;
             default:
                 return (
                     <tr key = {1}>

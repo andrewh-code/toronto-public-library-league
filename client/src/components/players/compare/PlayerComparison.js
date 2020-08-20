@@ -255,11 +255,11 @@ export default class PlayerComparison extends Component {
     showSalaryComparison() {
         let p1 = this.state.player1SelectedSeasonStats.salary;
         let p2 = this.state.player2SelectedSeasonStats.salary;
-        let show = this.state.showPlayerComparison;
+    let show = this.state.showPlayerComparison;
         
         p1 = String(p1).replace(/\$|,/g, "");
         p2 = String(p2).replace(/\$|,/g, "");
-        
+
         if (p1 && p2 && show) {
             return (
                 <SalaryComparison p1Salary = { p1 } p2Salary = { p2 }/>

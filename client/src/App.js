@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './css/App.css';
 import NavigationBar from './components/home/NavigationBar';
 import SeasonsComponent from './components/seasons/SeasonsComponent';
-import TestTableComponent from './components/TestTableComponent';
-import Search from './components/Search';
-import PlayerResults from './components/players/PlayerResults';
 import PlayerProfile from './components/players/PlayerProfile';
 import CurrentSeasonLeadersComponent from './components/leaders/SeasonLeadersComponent';
 import About from './components/home/About';
 import PlayerProfileCard from './components/players/PlayerProfileCard';
-import SearchAutoComplete from './components/SearchAutoComplete';
 import SearchWrapper from './components/SearchWrapper';
 import PlayerComparison from './components/players/compare/PlayerComparison';
 import Charting from './components/alpha/Charting';
@@ -24,7 +19,7 @@ class App extends Component {
   };
 
   render(){
-    const {players, searchPlayerResults} = this.state;
+    // const {players, searchPlayerResults} = this.state;
     return (
       <Router>
         <div className="App">

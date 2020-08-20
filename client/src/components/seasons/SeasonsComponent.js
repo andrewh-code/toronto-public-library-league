@@ -100,7 +100,7 @@ export class RecordsComponents extends Component {
         }
         // return this.state.players.map((player, index) => {
         return allPlayers.map((player, index) => {
-            const { zuluruId, name, sex } = player;
+            const { name, sex } = player;
             const {
                 assistThrowawayRatio,
                 assists,
@@ -146,7 +146,9 @@ export class RecordsComponents extends Component {
     }
 
     changeSexFilter(sex){
-        this.state.sexFilter = sex;
+        this.setState({
+            sexFilter: sex
+        });
     }
 
     render() {

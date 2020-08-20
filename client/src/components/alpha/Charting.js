@@ -1,6 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
 const dataSalary = [
@@ -24,7 +24,7 @@ const data = [
     },
   ];
 
-  
+
 
 export default class Charting extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/30763kr7/';

@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 
 // try this as a functional component instead of component
 const About = () => {
