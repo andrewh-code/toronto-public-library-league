@@ -1,41 +1,32 @@
 import React, { PureComponent, Fragment } from 'react';
 import {
-  BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 } from 'recharts';
 
-export default class PositiveStatsComparison extends PureComponent {
+export default class NegativeStatsComparison extends PureComponent {
 
   render() {
 
     const {
-        p1Goals,
-        p2Goals,
-        p1Assists,
-        p2Assists,
-        p1SecondAssists,
-        p2SecondAssists,
-        p1Ds,
-        p2Ds
+        p1TA,
+        p2TA,
+        p1RE,
+        p2RE
     } = this.props;
 
     
     let data = [
         {
-          name: 'Goals', p1: p1Goals, p2: p2Goals, amt: 100,
+          name: 'Throwaways', p1: p1TA, p2: p2TA, amt: 100,
         },
         {
-          name: 'Assists', p1: p1Assists, p2: p2Assists, amt: 100,
-        },
-        {
-          name: '2nd Assists', p1: p1SecondAssists, p2: p2SecondAssists, amt: 100,
-        },
-        {
-          name: 'Ds', p1: p1Ds, p2: p2Ds, amt: 100,
-        },
+          name: 'Receiver Error', p1: p1RE, p2: p2RE, amt: 100,
+        }
       ];
 
-
-    return (
+    console.log(p1TA);
+    console.log(p2TA);
+        return (
             <BarChart
                 width={500}
                 height={300}

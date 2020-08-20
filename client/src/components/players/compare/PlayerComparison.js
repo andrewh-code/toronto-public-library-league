@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 import SalaryComparison from '../../alpha/SalaryComparison';
 import PositiveStatsComparison from '../../alpha/PositiveStatsComparison';
+import NegativeStatsComparison from '../../alpha/NegativeStatsComparison';
 
 export default class PlayerComparison extends Component {
     
@@ -19,7 +20,7 @@ export default class PlayerComparison extends Component {
             player2SelectedSeason: null,
 
             player1: {
-                name: "Test Player 2",
+                name: "Test Player 1",
                 zuluruId: 12345,
                 stats: [
                     {
@@ -72,7 +73,7 @@ export default class PlayerComparison extends Component {
                 picture: "http://localhost:1234/img/male_default_pic.jpg"
             },
             player2: {
-                name: "Test Player 1",
+                name: "Test Player 2",
                 zuluruId: 67890,
                 stats: [
                     {
@@ -213,7 +214,9 @@ export default class PlayerComparison extends Component {
             goals: 0,
             assists: 0,
             secondAssists: 0,
-            ds: 0
+            ds: 0,
+            throwaways: 0,
+            receiverError: 0
         }
 
         let p2Stats = {
@@ -221,7 +224,9 @@ export default class PlayerComparison extends Component {
             goals: 0,
             assists: 0,
             secondAssists: 0,
-            ds: 0
+            ds: 0,
+            throwaways: 0,
+            receiverError: 0
         }
 
         player1.stats.map((stat, index) => {
@@ -231,6 +236,8 @@ export default class PlayerComparison extends Component {
                 p1Stats.assists = stat.assists;
                 p1Stats.secondAssists = stat.secondAssists;
                 p1Stats.ds = stat.ds;
+                p1Stats.throwaways = stat.throwaways;
+                p1Stats.receiverError = stat.receiverError;
             }
         });
         
@@ -241,6 +248,8 @@ export default class PlayerComparison extends Component {
                 p2Stats.assists = stat.assists;
                 p2Stats.secondAssists = stat.secondAssists;
                 p2Stats.ds = stat.ds;
+                p2Stats.throwaways = stat.throwaways;
+                p2Stats.receiverError = stat.receiverError;
             }
         });
        
@@ -255,14 +264,17 @@ export default class PlayerComparison extends Component {
     showSalaryComparison() {
         let p1 = this.state.player1SelectedSeasonStats.salary;
         let p2 = this.state.player2SelectedSeasonStats.salary;
-    let show = this.state.showPlayerComparison;
+        let show = this.state.showPlayerComparison;
         
         p1 = String(p1).replace(/\$|,/g, "");
         p2 = String(p2).replace(/\$|,/g, "");
 
         if (p1 && p2 && show) {
             return (
-                <SalaryComparison p1Salary = { p1 } p2Salary = { p2 }/>
+                <Fragment>
+                    <h4>Salary</h4>
+                    <SalaryComparison p1Salary = { p1 } p2Salary = { p2 }/>
+                </Fragment>
             );
         }
     }
@@ -274,10 +286,43 @@ export default class PlayerComparison extends Component {
 
         if (p1 && p2 && show) {
             return (
-                <PositiveStatsComparison p1Goals = { p1.goals } p2Goals = { p2.goals }/>
+                <Fragment>
+                    <h4>Goals, Assists, 2nd Assists, Ds</h4>
+                    <PositiveStatsComparison 
+                        p1Goals = { p1.goals } 
+                        p2Goals = { p2.goals }
+                        p1Assists = { p1.assists }
+                        p2Assists = { p2.assists }
+                        p1SecondAssists = { p1.secondAssists }
+                        p2SecondAssists = { p2.secondAssists }
+                        p1Ds = { p1.ds }
+                        p2Ds = { p2.ds }
+                    />
+                </Fragment>
             );
         }
     }
+
+    showNegativeStatsComparison() {
+        let p1 = this.state.player1SelectedSeasonStats;
+        let p2 = this.state.player2SelectedSeasonStats;
+        let show = this.state.showPlayerComparison;
+
+        if (p1 && p2 && show) {
+            return (
+                <Fragment>
+                    <h4>Throwaways, Receiver Errors</h4>
+                    <NegativeStatsComparison 
+                        p1TA = { p1.throwaways } 
+                        p2TA = { p2.throwaways }
+                        p1RE = { p1.receiverError }
+                        p2RE = { p2.receiverError }
+                    />
+                </Fragment>
+            );
+        }
+    }
+
 
     render() {
         
@@ -345,16 +390,11 @@ export default class PlayerComparison extends Component {
                 <div className="row mb-3">
                     <div className="col"></div>
                     <div className="col-6">
-                        {/* <form id="comparePlayers" onSubmit = { this.onSubmitComparePlayers }>
-                                <input type="submit"
-                                    value="Compare Player Stats"
-                                    disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
-                                    className = "btn btn-secondary btn-block"/>
-                            </form> */}
-                            <button 
-                                disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
-                                className="btn btn-secondary btn-block" 
-                                onClick={this.onSubmitComparePlayers}>Compare Players</button>                            
+                        <button 
+                            disabled = { !this.state.player1SelectedSeason || !this.state.player2SelectedSeason }
+                            className="btn btn-secondary btn-block" 
+                            onClick={this.onSubmitComparePlayers}>Compare Players
+                        </button>
                     </div>
                     <div className="col"></div>
                 </div>
@@ -365,6 +405,14 @@ export default class PlayerComparison extends Component {
                     </div>
                     <div className="col border">
                         { this.showPositiveStatsComparison() }
+                    </div>
+                </div>
+                <div className="row mb-3">
+                    <div className="col border">
+                        { this.showNegativeStatsComparison() }
+                    </div>
+                    <div className="col border">
+                        
                     </div>
                 </div>
 
