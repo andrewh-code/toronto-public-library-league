@@ -3,6 +3,7 @@ import axios from 'axios'
 import SalaryComparison from '../../alpha/SalaryComparison';
 import PositiveStatsComparison from '../../alpha/PositiveStatsComparison';
 import NegativeStatsComparison from '../../alpha/NegativeStatsComparison';
+import CompletenessComparison from '../../alpha/CompletenessComparison';
 
 export default class PlayerComparison extends Component {
     
@@ -323,6 +324,24 @@ export default class PlayerComparison extends Component {
         }
     }
 
+    showCompletenessdComparison() {
+        let p1 = this.state.player1SelectedSeasonStats;
+        let p2 = this.state.player2SelectedSeasonStats;
+        let show = this.state.showPlayerComparison;
+
+        if (p1 && p2 && show) {
+            return (
+                <Fragment>
+                    <h4>Overall Comparison</h4>
+                    <CompletenessComparison 
+                        p1 = { p1 } 
+                        p2 = { p2 }
+                    />
+                </Fragment>
+            );
+        }
+    }
+
 
     render() {
         
@@ -335,19 +354,27 @@ export default class PlayerComparison extends Component {
                 
                 {/* Player search part  */}
                 <div className="row mb-3">
-                    <div className="col-6">
+                    <div className="col-4">
                         <form onSubmit = { this.onSubmit }>
                             <input type="text" value = { this.state.player1Input } onChange = { this.onChangePlayer1 } placeholder="player 1 ID..."></input>
                         </form>
                     </div>
-                    <div className="col-6">
+                    <div className="col-4">
                         <form onSubmit = { this.onSubmit }>
                             <input type="text" value = { this.state.player2Input } onChange = { this.onChangePlayer2 } placeholder="player 2 ID..."></input>
                         </form>
                     </div>
+                    <div className="col-4">
+                        <form onSubmit = { this.onSubmit }>
+                                <input type="submit"
+                                    value="Get Players"
+                                    disabled = { !this.state.player1Input || !this.state.player2Input }
+                                    className = "btn btn-secondary btn-block"/>
+                            </form>
+                    </div>
                 </div>
                 <div className="row mb-3">
-                    <div className="col">
+                    {/* <div className="col">
                         
                     </div>
                     <div className="col-6">
@@ -360,7 +387,7 @@ export default class PlayerComparison extends Component {
                     </div>
                     <div className="col">
                         
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* display player profile */}
@@ -369,7 +396,7 @@ export default class PlayerComparison extends Component {
                     <center>
                         <img src = { player1.picture } id="player_avatar"></img>
                         <p>{ player1.name }</p>
-                        <select id = "dropdown" value = { this.player1SelectedSeason } onChange = { this.onChangePlayer1SelectedSeason }>
+                        <select id = "dropdown" value = { this.player1SelectedSeason } onChange = { this.onChangePlayer1SelectedSeason } style={{ width: "50%"}}>
                             <option value="Select season...">Select Season...</option>
                             { this.setDropDownForPlayer(player1) }
                         </select>
@@ -379,7 +406,7 @@ export default class PlayerComparison extends Component {
                     <center>
                         <img src = { player2.picture } id="player_avatar"></img>
                         <p>{ player2.name }</p>
-                        <select id = "dropdown" value = { this.player1SelectedSeason } onChange = { this.onChangePlayer2SelectedSeason }>
+                        <select id = "dropdown" value = { this.player1SelectedSeason } onChange = { this.onChangePlayer2SelectedSeason } style={{ width: "50%"}}>
                             <option value="Select season...">Select Season...</option>
                             { this.setDropDownForPlayer(player2) }
                         </select>
@@ -412,7 +439,7 @@ export default class PlayerComparison extends Component {
                         { this.showNegativeStatsComparison() }
                     </div>
                     <div className="col border">
-                        
+                        { this.showCompletenessdComparison() }
                     </div>
                 </div>
 
