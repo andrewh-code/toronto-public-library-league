@@ -190,7 +190,7 @@ export default class SearchAutoComplete extends Component {
         }
 
         if (serverResponseStatus && serverResponseStatus !== 200) {
-            searchStatus = <p id="search_execution_time">Player(s) not found...</p>;
+            searchStatus = <p id="error">Player(s) not found...</p>;
         } else {
             if (serverExecutionTime != null) {
                 searchStatus = <p id="search_execution_time">Players found: <b>{ foundPlayers ? foundPlayers.length : 0 }</b> execution time is: { serverExecutionTime } ms</p>;

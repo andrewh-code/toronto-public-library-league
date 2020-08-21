@@ -13,7 +13,8 @@ export default class PlayerComparison extends Component {
         this.state = {
             player1Input: '',
             player2Input: '',
-
+            serverResponseStatus1: 200,
+            serverResponseStatus2: 200,
             showPlayerComparison: false,
             player1SelectedSeasonStats: {},
             player2SelectedSeasonStats: {},
@@ -147,6 +148,11 @@ export default class PlayerComparison extends Component {
             this.setState({
                 player1: playerInfo
             });
+        })
+        .catch(err => {
+            this.setState({
+                serverResponseStatus1: err.response.status
+            })
         });
 
         endpoint = baseEndpoint + player2Id;
@@ -159,6 +165,11 @@ export default class PlayerComparison extends Component {
             this.setState({
                 player2: playerInfo
             });
+        })
+        .catch(err => {
+            this.setState({
+                serverResponseStatus2: err.response.status
+            })
         });
     }
 
@@ -260,7 +271,7 @@ export default class PlayerComparison extends Component {
                 p2Stats.receiverError = stat.receiverError;
             }
         });
-       
+
         this.setState({
             showPlayerComparison: true,
             player1SelectedSeasonStats: p1Stats,
@@ -363,13 +374,19 @@ export default class PlayerComparison extends Component {
         }
     }
 
+    errorRetrievingPlayer(serverResponseStatus) {
+        if (serverResponseStatus && serverResponseStatus != 200) {
+            return <p id="error">Player(s) not found...</p>
+        }
+    }
+
 
     render() {
         
         let player1 = this.state.player1;
         let player2 = this.state.player2;
-        let season = this.state.player1SelectedSeason;
-
+        let serverResponseStatus1 = this.state.serverResponseStatus1;
+        let serverResponseStatus2 = this.state.serverResponseStatus2;
         // player name place holder
         let placeHolder1 = !player1.name ? (<p style={{fontWeight: 'bold', color: '#82ca9d'}}>Player 1</p>) : (<p style={{fontWeight: 'bold', color: '#82ca9d'}}> { player1.name }</p>);
         let placeHolder2 = !player2.name ? (<p style={{fontWeight: 'bold', color: '#8884d8'}}>Player 2</p>) : (<p style={{fontWeight: 'bold', color: '#8884d8'}}> { player2.name }</p>);
@@ -388,11 +405,13 @@ export default class PlayerComparison extends Component {
                         <form onSubmit = { this.onSubmit }>
                             <input type="text" value = { this.state.player1Input } onChange = { this.onChangePlayer1 } placeholder="player 1 ID..."></input>
                         </form>
+                        { this.errorRetrievingPlayer(serverResponseStatus1) }
                     </div>
                     <div className="col-4">
                         <form onSubmit = { this.onSubmit }>
                             <input type="text" value = { this.state.player2Input } onChange = { this.onChangePlayer2 } placeholder="player 2 ID..."></input>
                         </form>
+                        { this.errorRetrievingPlayer(serverResponseStatus2) }
                     </div>
                     <div className="col-4">
                         <form onSubmit = { this.onSubmit }>

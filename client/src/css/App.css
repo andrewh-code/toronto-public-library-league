@@ -35,6 +35,11 @@ h1 {
 h4 {
   text-align: center;
 }
+/* basic error messages */
+p#error {
+  color: red;
+  font-style: italic;
+}
 
 h1#navigationbar {
   font-family: "Trebuchet MS", sans-serif, Arial, Helvetica;
