@@ -19,13 +19,13 @@ export class NavigationBar extends Component {
                         <Link to='/'>Home</Link>
                     </li>
                     <li>
+                        <Link to='/about'>About</Link>
+                    </li>
+                    <li>
                         <Link to='/player/12345'>12345</Link>
                     </li>
                     <li>
                         <Link to='/compare/'>Compare</Link>
-                    </li>
-                    <li>
-                        <Link to='/about'>About</Link>
                     </li>
                     <li>
                         <Link to={'/search'}>Search</Link>

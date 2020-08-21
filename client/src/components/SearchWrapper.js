@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Search from './Search.js'
 import SearchAutoComplete from './SearchAutoComplete'
 
 export default class SearchWrapper extends Component {
