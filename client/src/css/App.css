@@ -23,13 +23,17 @@ textarea {
   width: 100%;
   padding: 0.4rem;
   font-size: 1.2rem;
-  border: 1px solid #ccc;
+  border: none;
+  border-bottom: 1px solid #8d8686ad;
 }
 
 h1 {
   font-family: "Trebuchet MS", sans-serif, Arial, Helvetica;
   color: #000000;
   text-decoration: underline;
+}
+h4 {
+  text-align: center;
 }
 
 h1#navigationbar {
@@ -233,4 +237,9 @@ td, tr {
 .show>.dropdown-menu {
   display: block;
   position: absolute;
+}
+
+select {
+  border: none;
+  border-bottom: 1px solid #8d8686ad;
 }

@@ -8,6 +8,8 @@ export default class NegativeStatsComparison extends PureComponent {
     render() {
 
         const {
+            p1Name,
+            p2Name,
             p1TA,
             p2TA,
             p1RE,
@@ -17,10 +19,10 @@ export default class NegativeStatsComparison extends PureComponent {
 
         let data = [
             {
-                name: 'Throwaways', p1: p1TA, p2: p2TA, amt: 100,
+                name: 'TA', p1: p1TA, p2: p2TA, amt: 100,
             },
             {
-                name: 'Receiver Error', p1: p1RE, p2: p2RE, amt: 100,
+                name: 'RE', p1: p1RE, p2: p2RE, amt: 100,
             }
         ];
 
@@ -29,7 +31,7 @@ export default class NegativeStatsComparison extends PureComponent {
         return (
             <BarChart
                 width={500}
-                height={300}
+                height={500}
                 data={data}
                 margin={{
                     top: 5, right: 30, left: 20, bottom: 5,
@@ -37,11 +39,11 @@ export default class NegativeStatsComparison extends PureComponent {
             >
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="name" />
-                <YAxis />
+                <YAxis ticks={[0, 10, 20, 30, 40, 50, 60, 70, 80]} type="number"/>
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="p1" fill="#82ca9d" />
-                <Bar dataKey="p2" fill="#8884d8" />
+                <Bar name={ p1Name } dataKey="p1" fill="#82ca9d" />
+                <Bar name={ p2Name } dataKey="p2" fill="#8884d8" />
             </BarChart>
         );
     }
