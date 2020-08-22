@@ -22,6 +22,9 @@ export class NavigationBar extends Component {
                         <Link to='/about'>About</Link>
                     </li>
                     <li>
+                        <Link to='/trade'>Trade</Link>
+                    </li>
+                    <li>
                         <Link to='/player/12345'>12345</Link>
                     </li>
                     <li>
