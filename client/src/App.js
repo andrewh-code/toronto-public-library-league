@@ -12,6 +12,7 @@ import PlayerComparison from './components/players/compare/PlayerComparison';
 import Charting from './components/alpha/Charting';
 import TeamPermutation from './components/trade/TeamPermutation';
 
+
 class App extends Component {
 
   state = {
@@ -36,9 +37,7 @@ class App extends Component {
         <Route exact path = "/" component = {CurrentSeasonLeadersComponent}/>
         <Route exact path = "/charts" component = {Charting}/>        
         <Switch>
-          
           <Route exact path = '/trade' component = {TeamPermutation } />
-
           <Route exact path = '/playercard' component = { PlayerProfileCard } />
           <Route exact path = '/about' component = { About } />
           <Route exact path = '/compare' component = { PlayerComparison } />
