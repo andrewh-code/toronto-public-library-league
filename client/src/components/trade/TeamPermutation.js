@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 //https://stackoverflow.com/questions/49171107/how-to-add-and-remove-table-rows-dynamically-in-react-js
 //https://stackoverflow.com/questions/4632322/finding-all-possible-combinations-of-numbers-to-reach-a-given-sum
-const MAX_PLAYERS = 3;
+const MAX_PLAYERS = 5;
 
 export default class TeamPermutation extends Component {
     
@@ -89,54 +89,43 @@ export default class TeamPermutation extends Component {
             // do a check for negative/decimal, etc
             playerSalaries.push(salary);
         }
-        let partial = [];
-        let result = [];
-        result = this.calculate(playerSalaries, cap, partial, []);
+        let partial = [playerSalaries[0]];
+        let result = []; 
+        result = this.subsetSum([],playerSalaries, cap, []);
         console.log("final result is: ");
         console.log(result);
     }
 
-    // recursion
-    calculate(playerSalaries, cap, partial, result) {
+    subsetSum(output, playerSalaries, cap, partial) {
+        var s, n, remaining;
 
-        console.log("salaries is: ");
-        console.log(playerSalaries);
+        partial = partial || [];
 
-        let partialSum = 0;
-        if (Array.isArray(partial) && partial.length > 0){
-            partialSum = partial.reduce((a,b) => { return a + b})
-        }
-        console.log("partial sum is: " + partialSum);
-
-        if (partialSum <= cap) {
-            console.log("partial: %s, partialsum: %s, salarycap: %s", partial.join("+"), partialSum, cap)
-            
-            result.push(partial);
-            console.log(result);
-            console.log("----------");
-        }
-        if (partialSum > cap){
-            console.log("partial sum is too high: " + partialSum);
-            console.log("----------");
-            return;
+        // sum partial
+        var s;
+        if (Array.isArray(partial) && partial.length > 0) {
+            s = partial.reduce(function (a, b) {
+                return a + b;
+            }, 0);
         }
 
-        let sum = 0;
-        for (let i = 0; i < playerSalaries.length; i++) {
+        // check if the partial sum is equals to target
+        if (s <= cap) {
+            console.log("%s=%s", partial.join("+"), cap);
+            output.push(partial);
+        }
+
+        if (s >= cap) {
+            return;  // if we reach the number why bother to continue
+        }
+
+        for (var i = 0; i < playerSalaries.length; i++) {
             let n = playerSalaries[i];
-            let remaining = playerSalaries.slice(i+1);
-            console.log("remaing values: ")
-            console.log(remaining);
-            partial = partial.concat(n);
-            console.log("new partial is: ")
-            console.log(partial);
-            console.log("calling function again...");
-            
-
-            this.calculate(remaining, cap, partial, result)
+            let remaining = playerSalaries.slice(i + 1);
+            this.subsetSum(output, remaining, cap, partial.concat([n]));
         }
 
-        return result;
+        return output;
     }
 
     render() {
