@@ -13,7 +13,8 @@ export default class TeamPermutation extends Component {
             rows: [{
                 name: '',
                 salary: ''
-            }]
+            }],
+            permutationResults: []
         };
     }
 
@@ -94,6 +95,10 @@ export default class TeamPermutation extends Component {
         result = this.subsetSum([],playerSalaries, cap, []);
         console.log("final result is: ");
         console.log(result);
+
+        this.setState({
+            permutationResults: result
+        })
     }
 
     subsetSum(output, playerSalaries, cap, partial) {
@@ -139,9 +144,20 @@ export default class TeamPermutation extends Component {
         }
         
         return (
+            
             <div className="container">
+                <h1 id="page_title">Salary Cap Trade Helper</h1>
                 <div className="row">
                     <div className="col-6">
+                        <div className="row">
+                        <div className="col-6">
+                            <button id="remove_player" onClick= {this.handleRemoveRow } className="btn btn-secondary btn-block">Remove Player</button>        
+                        </div>
+                        <div className="col-6">
+                            <button id="add_player" onClick={ this.handleAddRow } className="btn btn-secondary btn-block">Add Player</button> 
+                        </div>  
+                        </div>
+                                               
                         <table>
                             <thead>
                                 <tr>
@@ -155,13 +171,6 @@ export default class TeamPermutation extends Component {
                                     <tr key={ index }>
                                         <td>{ index + 1}</td>
                                         <td>
-                                            {/* <input
-                                                type="text"
-                                                name="player"
-                                                onChange={ this.handleInputName(index) }
-                                                value={ this.state.rows[index].player || '' }
-                                                placeholder="enter player...">
-                                            </input> */}
                                             Player { index + 1}
                                         </td>
                                         <td>
@@ -195,14 +204,14 @@ export default class TeamPermutation extends Component {
                                 )
                             }
                             </tbody>
-                            {/* { this.renderMaxLimitRow() } */}
-                            
                         </table>
-                    </div>
-                    <div className="col-6">
-                        <button onClick={ this.handleAddRow } className="btn btn-secondary">Add Player</button>
-                        <button onClick= {this.handleRemoveRow } className="btn btn-secondary">Remove Player</button>
-                        <button onClick= {this.calculatePermutation } className="btn btn-secondary">Calculate</button>
+                        {
+                            reachedMax ? (
+                                <button id="calculate_trade" onClick= {this.calculatePermutation } className="btn btn-secondary btn-block">Calculate</button>
+                            ) : (
+                                <div></div>
+                            )
+                        }
                     </div>
                 </div>
                 <div className="row">

@@ -32,6 +32,10 @@ h1 {
   color: #000000;
   text-decoration: underline;
 }
+h1#page_title {
+  text-align:center;
+}
+
 h4 {
   text-align: center;
 }
@@ -247,4 +251,12 @@ td, tr {
 select {
   border: none;
   border-bottom: 1px solid #8d8686ad;
+}
+
+
+/* team permutation */
+button #add_player, #remove_player, #calculate_trade {
+  /* width: 50%; */
+  float: right;
+  
 }
