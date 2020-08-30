@@ -27,3 +27,5 @@ in the client directory, execute:
 The client is hosted on localhost:3000/
 
 
+## Screeshots
+![Home page](screenshots/home_page.png)
