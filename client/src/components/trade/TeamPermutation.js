@@ -90,9 +90,9 @@ export default class TeamPermutation extends Component {
             // do a check for negative/decimal, etc
             playerSalaries.push(salary);
         }
-        let partial = [playerSalaries[0]];
+        let partial = [];
         let result = []; 
-        result = this.subsetSum([],playerSalaries, cap, []);
+        result = this.subsetSum([],playerSalaries, cap, partial);
         console.log("final result is: ");
         console.log(result);
 
@@ -104,14 +104,17 @@ export default class TeamPermutation extends Component {
     subsetSum(output, playerSalaries, cap, partial) {
         var s, n, remaining;
 
-        partial = partial || [];
+        partial = partial || [[],[]];
 
         // sum partial
-        var s;
-        if (Array.isArray(partial) && partial.length > 0) {
-            s = partial.reduce(function (a, b) {
-                return a + b;
-            }, 0);
+        var s = 0;
+        // if (Array.isArray(partial) && partial.length > 0) {
+        //     s = partial.reduce(function (a, b) {
+        //         return a[1] + b[1];
+        //     }, 0);
+        // }    filter doesn't work for some readon
+        for (let j = 0; j < partial.length; j++){
+            s += partial[j][1];
         }
 
         // check if the partial sum is equals to target
@@ -127,7 +130,9 @@ export default class TeamPermutation extends Component {
         for (var i = 0; i < playerSalaries.length; i++) {
             let n = playerSalaries[i];
             let remaining = playerSalaries.slice(i + 1);
-            this.subsetSum(output, remaining, cap, partial.concat([n]));
+            // this.subsetSum(output, remaining, cap, partial.concat([n]));
+            let tempArray = [[i,n]];
+            this.subsetSum(output, remaining, cap, partial.concat(tempArray));
         }
 
         return output;

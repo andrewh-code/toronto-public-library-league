@@ -21,12 +21,12 @@ export class NavigationBar extends Component {
                     <li>
                         <Link to='/about'>About</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to='/trade'>Trade</Link>
                     </li>
                     <li>
                         <Link to='/player/12345'>12345</Link>
-                    </li>
+                    </li> */}
                     <li>
                         <Link to='/compare/'>Compare</Link>
                     </li>
