@@ -1,7 +1,7 @@
 import express from 'express';
-import { Router } from 'express';
+import Router from 'express';
 
-import EHelloController from '../controller/es6/EHelloController';
+import EHelloController from '../controller/es6/EHelloController.js';
 
 const router = Router();
 

@@ -1,5 +1,3 @@
-import { request } from "express";
-
  class BaseController {
 
     constructor(){};

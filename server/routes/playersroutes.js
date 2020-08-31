@@ -1,7 +1,7 @@
 import express from 'express';
-import { Router } from 'express';
+import Router from 'express';
 
-import EPlayersController from '../controller/es6/EPlayersController';
+import EPlayersController from '../controller/es6/EPlayersController.js';
 
 const router = Router();
 

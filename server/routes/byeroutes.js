@@ -1,7 +1,7 @@
 import express from 'express';
-import { Router } from 'express';
+import Router from 'express';
 
-import EByeController from '../controller/es6/EByeController';
+import EByeController from '../controller/es6/EByeController.js';
 
 const router = Router();
 

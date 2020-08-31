@@ -1,6 +1,6 @@
-import BaseController from './BaseController';
+import BaseController from './BaseController.js';
 // mocking of player data
-import playerData from '../../model/players';
+import playerData from '../../model/players.js';
 
 class EStatsController extends BaseController {
 

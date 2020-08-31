@@ -4,7 +4,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import { v4 as uuidv4 } from 'uuid';
-import router from './routes/router';
+import router from './routes/router.js';
 import path from 'path';
 
 const app = express();
@@ -31,6 +31,7 @@ app.use((request, response, next) => {
 });
 
 // host pics
+const __dirname = path.resolve();
 var dir = path.join(__dirname, '/public');
 app.use(express.static(dir));
 app.use('/hello', router.helloroutes);

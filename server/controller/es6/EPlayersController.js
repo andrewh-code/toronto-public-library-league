@@ -1,7 +1,6 @@
-import playerData from '../../model/players';
-import BaseController from './BaseController';
-import PlayerInfoView from '../../view/playerprofile/PlayerInfoView';
-import SeasonDataInfo from '../../data/SeasonDataInfo';
+import playerData from '../../model/players.js';
+import BaseController from './BaseController.js';
+import PlayerInfoView from '../../view/playerprofile/PlayerInfoView.js';
 import fs from 'fs';
 class EPlayersController extends BaseController {
 

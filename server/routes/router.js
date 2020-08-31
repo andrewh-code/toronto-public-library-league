@@ -14,10 +14,10 @@
 
 
 // export default router;
-import helloroutes from './helloroutes';
-import byeroutes from './byeroutes';
-import playersroutes from './playersroutes';
-import statsroutes from './statsroutes';
+import helloroutes from './helloroutes.js';
+import byeroutes from './byeroutes.js';
+import playersroutes from './playersroutes.js';
+import statsroutes from './statsroutes.js';
 
 export default {
     helloroutes,

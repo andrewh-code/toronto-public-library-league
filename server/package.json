@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "parity project in JS",
   "main": "server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server",
+    "start": "node server.js",
     "dev": "nodemon server",
     "dev6": "nodemon --exec babel-node server.js",
     "client": "npm run start --prefix client",
