@@ -48,19 +48,19 @@ The client is hosted on localhost:3000/
 ### __Screenshots__
 
 > __Home page__
-![Home page](docs/screenshots/home_page.png)
+![Home page](screenshots/home_page.png)
 
 > __Player Comparison__
-![Player Comparison](docs/screenshots/player_compare.png)
+![Player Comparison](screenshots/player_compare.png)
 
 > __Search Feature__
-![Search](docs/screenshots/tpllsearch_feature.png)
+![Search](screenshots/tpllsearch_feature.png)
 
 > __Search Results__
-![Search Results](docs/screenshots/tpllsearch_results.png)
+![Search Results](screenshots/tpllsearch_results.png)
 
 > __Player Profile__
-![Player Profile](docs/screenshots/tpllplayer_profile.png)
+![Player Profile](screenshots/tpllplayer_profile.png)
 
 > __Leaderboards__
-![Leaderboards](docs/screenshots/leaderboards.png)
+![Leaderboards](screenshots/leaderboards.png)
