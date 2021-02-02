@@ -54,13 +54,13 @@ The client is hosted on localhost:3000/
 ![Player Comparison](screenshots/player_compare.png)
 
 > __Search Feature__
-![Search](screenshots/tpllsearch_feature.png)
+![Search](screenshots/search_feature.png)
 
 > __Search Results__
-![Search Results](screenshots/tpllsearch_results.png)
+![Search Results](screenshots/search_results.png)
 
 > __Player Profile__
-![Player Profile](screenshots/tpllplayer_profile.png)
+![Player Profile](screenshots/player_profile.png)
 
 > __Leaderboards__
 ![Leaderboards](screenshots/leaderboards.png)
