@@ -45,19 +45,19 @@ The client is hosted on localhost:3000/
 ### __Screenshots__
 
 > __Home page__
-![Home page](screenshots/home_page.png)
+![Home page](docs/screenshots/home_page.png)
 
 > __Player Comparison__
-![Player Comparison](screenshots/player_compare.png)
+![Player Comparison](docs/screenshots/player_compare.png)
 
 > __Search Feature__
-![Search](screenshots/search_feature.png)
+![Search](docs/screenshots/search_feature.png)
 
 > __Search Results__
-![Search Results](screenshots/search_results.png)
+![Search Results](docs/screenshots/search_results.png)
 
 > __Player Profile__
-![Player Profile](screenshots/player_profile.png)
+![Player Profile](docs/screenshots/player_profile.png)
 
 > __Leaderboards__
-![Leaderboards](screenshots/leaderboards.png)
+![Leaderboards](docs/screenshots/leaderboards.png)
