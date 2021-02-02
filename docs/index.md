@@ -1,37 +1,63 @@
-## Welcome to GitHub Pages
+# Toronto Public Library League (TPLL)
 
-You can use the [editor on GitHub](https://github.com/andrewh-code/tpll/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+### __Info__
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Hello and welcome to the parityJS project aka the Toronto Public Library League Project. I created this project as a way to learn more about React and Node. This is for a local Frisbee league and the main features of this project show statistics, player profiles, leaderboards, and a player comparison feature of players in the league.
 
-### Markdown
+### __Tech stack__
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+This website was built using the following JavaScript tech stack:
 
-```markdown
-Syntax highlighted code block
+### __Front end__
 
-# Header 1
-## Header 2
-### Header 3
+- React 
+    - [Create React App](https://github.com/facebook/create-react-appA)
+    - React [ReCharts](https://github.com/recharts/recharts) to display graphs
+- CSS
+- HTML
+- JavaScript
+- Bootstrap
 
-- Bulleted
-- List
+### __Back end__
 
-1. Numbered
-2. List
+- JavaScript ES6
+- Node
+- Expres
 
-**Bold** and _Italic_ and `Code` text
+## How to Run
 
-[Link](url) and ![Image](src)
-```
+The project is separated into a `server/` and `client/` folder directory.
+The back end was developed using ES6 syntax. At the time of creation, the Node.JS version did not support ES6, so babel was used.
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+in the server directory, execute:
 
-### Jekyll Themes
+    $ npm run dev6
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/andrewh-code/tpll/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+The server is hosted on localhost:1234/
 
-### Support or Contact
+in the client directory, execute:
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    $ npm run start
+
+The client is hosted on localhost:3000/
+
+
+### __Screenshots__
+
+> __Home page__
+![Home page](../screenshots/home_page.png)
+
+> __Player Comparison__
+![Player Comparison](../screenshots/player_compare.png)
+
+> __Search Feature__
+![Search](../screenshots/search_feature.png)
+
+> __Search Results__
+![Search Results](../screenshots/search_results.png)
+
+> __Player Profile__
+![Player Profile](../screenshots/player_profile.png)
+
+> __Leaderboards__
+![Leaderboards](../screenshots/leaderboards.png)
