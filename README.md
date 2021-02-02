@@ -4,6 +4,9 @@
 
 Hello and welcome to the parityJS project aka the Toronto Public Library League Project. I created this project as a way to learn more about React and Node. This is for a local Frisbee league and the main features of this project show statistics, player profiles, leaderboards, and a player comparison feature of players in the league.
 
+### __Demo__
+[https://www.youtube.com/watch?v=wVXZCphzEh4](https://www.youtube.com/watch?v=wVXZCphzEh4)
+
 ### __Tech stack__
 
 This website was built using the following JavaScript tech stack:
